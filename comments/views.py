@@ -16,7 +16,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     http_method_names = ['GET', 'POST']
 
     @action(detail=True, methods=['POST'])
-    def comment_add(self, request, id):
+    def comment_add(self, request, pk):
         post = get_object_or_404(Post, pk=id)
         serializer = CommentSerializer(data=request.data)
 

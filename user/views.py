@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated , AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -30,8 +30,6 @@ def register(request):
         user.save()
         token = Token.objects.create(user=user)
         print(f"TOKEN: {token}")
-
-
         return Response({"token": token.key, "user": serializer.data})
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
