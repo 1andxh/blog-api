@@ -34,8 +34,8 @@ def register(request):
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
-@permission_classes([SessionAuthentication, TokenAuthentication])
-@authentication_classes([IsAuthenticated])
-def get_token(request):
-    return Response("Authorized User {}".format(request.user.username))
+# @api_view(['GET'])
+# @permission_classes([SessionAuthentication, TokenAuthentication])
+# @authentication_classes([IsAuthenticated])
+# def get_token(request):
+#     return Response("Authorized User {}".format(request.user.username))

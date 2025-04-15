@@ -1,10 +1,11 @@
 
 from .models import Post
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.response import Response
 from .serializers import PostSerializer
 from django.utils import timezone
+# from rest_framework.permissions import IsAuthenticated
 
 
 
@@ -17,10 +18,12 @@ def post_view(request):
 
 
 @api_view(["POST"])
+# @permission_classes([IsAuthenticated])
 def post_create(request):
     serializer = PostSerializer(data=request.data)
     serializer.is_valid(raise_exception=True)
     serializer.save()
+    # serializer.save(author=request.user)
     return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
